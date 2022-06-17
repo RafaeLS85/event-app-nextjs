@@ -1,6 +1,8 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import AddressIcon from '../icons/address-icon'
+import ArrowRightIcon from '../icons/arrow-right-icon'
+import DateIcon from '../icons/date-icon'
+import { Button } from '../ui/button'
+import styles from './event-item.module.scss'
 
 export const EventItem = ({item}) => {
 
@@ -14,19 +16,27 @@ export const EventItem = ({item}) => {
     const link = `/events/${id}`
 
   return (
-    <li> 
+    <li className={styles.item}> 
         <img src={'/' + image} alt={title}/>
-        <div>
-            <div>
+        <div className={styles.content}>
+            <div className={styles.summary}>
                 <h2>{title}</h2>
-                <div>
+                <div className={styles.date}>
+                    <DateIcon />
                     <time>{dateString}</time>
                 </div>
-                <div>
+                <div className={styles.address}>
+                    <AddressIcon />
                     <address>{formattedAddress}</address>
                 </div>
             </div>
-            <Link href={link}>Explore event</Link>
+            <div className={styles.actions}>                
+                <Button link={link}>
+                    <span>Explore Event</span>
+                    <span className={styles.icon}> <ArrowRightIcon /></span>                    
+                </Button>
+            </div>
+
         </div>
     </li>
   )
